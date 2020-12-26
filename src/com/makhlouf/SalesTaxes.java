@@ -13,7 +13,6 @@ public class SalesTaxes {
         ImportedGood imp3= new ImportedGood( "1 box of imported chocolates",11.25,0.0,5.00 );
         ImportedGood imp4= new ImportedGood( "1 imported bottle of perfume",27.99,10.00,5.00 );
         //System.out.println("OUTPUT ");
-
         System.out.println("output 1: ");
         System.out.println(". " +n1.getGoodsName()+" : " +n1.getPriceAfterTaxe() );
         System.out.println(". " +n2.getGoodsName()+" : " +n2.getPriceAfterTaxe() );

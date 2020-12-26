@@ -1,40 +1,35 @@
 package com.makhlouf;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
+
 public class ImportedGood extends Goods{
 
-    private double importedTaxRate;
-    private double importedTax;
-    private double importedPriceAftertax;
+    private final Double importedTaxRate;
+    private final Double importedTax;
+    private final Double importedPriceAftertax;
 
-    ImportedGood(String goodsName, double goodsPrice, double taxRate, double importedTaxRate) {
+    ImportedGood(String goodsName, Double goodsPrice, Double taxRate, Double importedTaxRate) {
         super(goodsName, goodsPrice, taxRate);
         this.importedTaxRate=importedTaxRate;
-        this.importedTax = (goodsPrice * (taxRate + importedTaxRate)) / 100;
+        this.importedTax = BigDecimal.valueOf(goodsPrice)
+                .multiply(BigDecimal.valueOf(taxRate)
+                .add(BigDecimal.valueOf(importedTaxRate)))
+                .divide(BigDecimal.valueOf(100))
+                .multiply(BigDecimal.valueOf(20)).setScale(0, RoundingMode.CEILING)
+                .divide(BigDecimal.valueOf(20)).setScale(2,RoundingMode.CEILING).doubleValue();
         this.importedPriceAftertax = goodsPrice + importedTax;
 
     }
 
-    public double getImportedTaxRate() {
-        return  importedTaxRate;
+    public Double getImportedTax() {
+        return importedTax;
     }
 
-    public void setImportedTaxRate(double importedTaxRate) {
-        this.importedTaxRate = importedTaxRate;
+    public Double getImportedPriceAftertax() {
+        return importedPriceAftertax;
     }
 
-    public double getImportedTax() {
-        return (double) Math.round(importedTax*100)/100;
-    }
 
-    public void setImportedTax(double importedTax) {
-        this.importedTax = importedTax;
-    }
-
-    public double getImportedPriceAftertax() {
-        return (double) Math.round(importedPriceAftertax*100)/100;
-    }
-
-    public void setImportedPriceAftertax(double importedPriceAftertax) {
-        this.importedPriceAftertax = importedPriceAftertax;
-    }
 }
