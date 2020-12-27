@@ -1,5 +1,4 @@
 package com.makhlouf;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +9,6 @@ class ImportedGoodTest {
     public void test_imported_chocolates_box() {
 
         ImportedGood imp1 = new ImportedGood("1 imported box of chocolates", 10.00, 0.0, 5.00);
-
         Assertions.assertEquals(10.50,imp1.getImportedPriceAftertax());
 
     }

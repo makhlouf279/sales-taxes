@@ -8,7 +8,7 @@ public class Goods {
     private String  goodsName;
     private final Double  goodsPrice;
     private final Double  taxRate;
-    private final Double taxeGoods;
+    private final Double  taxeGoods;
     private final Double  priceAfterTaxe;
 
 
@@ -24,7 +24,9 @@ public Goods(String goodsName, Double goodsPrice, Double taxRate) {
             .multiply(BigDecimal.valueOf(20)).setScale(0,RoundingMode.CEILING)
             .divide(BigDecimal.valueOf(20)).setScale(2,RoundingMode.CEILING).doubleValue();
 
-    this.priceAfterTaxe = goodsPrice + taxeGoods;
+    this.priceAfterTaxe =BigDecimal.valueOf(goodsPrice)
+            .add(BigDecimal.valueOf(taxeGoods)).doubleValue();
+
 }
 
     public String getGoodsName() {

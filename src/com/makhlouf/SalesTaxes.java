@@ -1,5 +1,7 @@
 package com.makhlouf;
 
+import java.math.BigDecimal;
+
 public class SalesTaxes {
 
     public static void main(String[] args) {
@@ -32,8 +34,17 @@ public class SalesTaxes {
         System.out.println(". " +n4.getGoodsName()+" : " +n4.getPriceAfterTaxe() );
         System.out.println(". " +n5.getGoodsName()+" : " +n5.getPriceAfterTaxe() );
         System.out.println(". " +imp3.getGoodsName()+" : " +imp3.getImportedPriceAftertax() );
-        System.out.println(".  Sales Taxes : " +(imp4.getImportedTax()+n4.getTaxeGoods()+n5.getTaxeGoods()+imp3.getImportedTax())+
-                " Total: "+ (imp4.getImportedPriceAftertax() + n4.getPriceAfterTaxe() + n5.getPriceAfterTaxe() + imp3.getImportedPriceAftertax()) );
+        System.out.println
+                (".  Sales Taxes : " +(BigDecimal.valueOf(imp4.getImportedTax())
+                        .add(BigDecimal.valueOf(n4.getTaxeGoods())
+                                .add(BigDecimal.valueOf(n5.getTaxeGoods())
+                                        .add(BigDecimal.valueOf(imp3.getImportedTax())))).doubleValue()
+
+                        + " Total: "
+                        + BigDecimal.valueOf(imp4.getImportedPriceAftertax())
+                        .add(BigDecimal.valueOf(n4.getPriceAfterTaxe()))
+                        .add(BigDecimal.valueOf(n5.getPriceAfterTaxe()))
+                        .add(BigDecimal.valueOf(imp3.getImportedPriceAftertax())).doubleValue()));
 
     }
 }
